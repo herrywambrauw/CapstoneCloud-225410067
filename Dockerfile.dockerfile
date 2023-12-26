@@ -1,8 +1,13 @@
-FROM httpd:latest
+FROM nginx:latest
 
 RUN apt-get update && apt-get upgrade -y
+RUN apt-get install wget unzip -y
 
-COPY . /usr/local/apache2/htdocs
+COPY Herry.JPEG /usr/Herry_225410067/Herry.JPEG
+ADD https://github.com/herrywambrauw/CapstoneCloud-225410067/raw/main/WebStatic_225410067.zip .
+
+RUN unzip WebStatic_225410076.zip
+RUN mv WebStatic_225410076
 
 EXPOSE 80
-CMD ["httpd-foreground"]
+CMD ["nginx", "-g", "daemon off;"]
